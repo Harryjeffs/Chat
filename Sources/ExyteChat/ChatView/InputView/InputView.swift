@@ -186,12 +186,8 @@ struct InputView: View {
                     .foregroundColor(theme.colors.sendButtonBackground)
             }
             Group {
-                if state.canSend {
-                    sendButton
-                } else {
-                    recordButton
-                        .highPriorityGesture(dragGesture())
-                }
+				sendButton.disabled(!state.canSend)
+					.opacity(state.canSend ? 1 : 0.5)
             }
             .compositingGroup()
             .overlay(alignment: .top) {
@@ -518,4 +514,17 @@ struct InputView: View {
                 dragStart = nil
             }
     }
+}
+
+
+struct InputView_Previews: PreviewProvider {
+	
+	static var previews: some View {
+		InputView(viewModel: InputViewModel(),
+				  inputFieldId: .init(),
+				  style: .message,
+				  messageUseMarkdown: false)
+		.environmentObject(GlobalFocusState())
+		.previewLayout(.sizeThatFits)
+	}
 }

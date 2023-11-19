@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ExyteMediaPicker
-import ActivityIndicatorView
 
 struct AttachmentsEditor<InputViewContent: View>: View {
 
